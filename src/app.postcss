@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+html,
+body {
+	@apply h-full overflow-hidden;
+}
+
+body {
+	background-color: hsla(225, 32%, 42%, 0.97);
+	background-image: radial-gradient(at 17% 24%, hsla(10, 100%, 88%, 0.66) 0px, transparent 50%),
+		radial-gradient(at 87% 86%, hsla(80, 100%, 88%, 0.59) 0px, transparent 50%);
+}
+
+/* modern theme */
+@font-face {
+	font-family: 'Quicksand';
+	src: url('/fonts/Quicksand.ttf');
+	font-display: swap;
+}
