@@ -24,7 +24,14 @@
 		<p class="text-surface-600 dark:text-white">{game.tv_station_name}</p>
 	</div>
 	<hr class="!border-t-2" />
-	<span class="h6">Select a Team</span>
+	<div class="flex grow justify-between">
+		<span class="h6">Select a Team</span>
+		{#if game.status === 'FINAL'}
+			<span class="h6">Score</span>
+		{:else}
+			<span class="h6">Spread</span>
+		{/if}
+	</div>
 	<div class="flex flex-row justify-between align-middle px-2 py-2">
 		{#if game.status === 'FINAL'}
 			<div class="flex grow justify-between">
