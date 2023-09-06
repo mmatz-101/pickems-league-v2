@@ -1,7 +1,7 @@
 import PocketBase from 'pocketbase'
 
 export async function handle({ event, resolve }) {
-    event.locals.pb = new PocketBase("http://127.0.0.1:8090");
+    event.locals.pb = new PocketBase("https://pickems-league-db.fly.dev/");
 
     // load the store data from the request cookie string
     event.locals.pb.authStore.loadFromCookie(event.request.headers.get("cookie") || "");
