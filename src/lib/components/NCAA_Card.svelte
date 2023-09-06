@@ -26,44 +26,60 @@
 	<hr class="!border-t-2" />
 	<span class="h6">Select a Team</span>
 	<div class="flex flex-row justify-between align-middle px-2 py-2">
-		<button
-			class="btn grow justify-between"
-			on:click={() => {
-				game.awayTeamSelected = false;
-				game.homeTeamSelected = !game.homeTeamSelected;
-			}}
-		>
-			<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
-				@{game.home_display_name}
-			</h4>
-			<div>
-				{#if game.status === 'FINAL'}
-					<p>{game.home_spread}</p>
-				{:else}
-					<p>{game.home_spread}</p>
-				{/if}
+		{#if game.status === 'FINAL'}
+			<div class="flex grow justify-between">
+				<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
+					@{game.home_display_name}
+				</h4>
+				<div>
+					<p>{game.home_score}</p>
+				</div>
 			</div>
-		</button>
+		{:else}
+			<button
+				class="btn grow justify-between"
+				on:click={() => {
+					game.awayTeamSelected = false;
+					game.homeTeamSelected = !game.homeTeamSelected;
+				}}
+			>
+				<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
+					@{game.home_display_name}
+				</h4>
+				<div>
+					<p>{game.home_spread}</p>
+				</div>
+			</button>
+		{/if}
 	</div>
 	<div class="flex flex-row justify-between align-middle px-2 py-2">
-		<button
-			class="btn grow justify-between"
-			on:click={() => {
-				game.homeTeamSelected = false;
-				game.awayTeamSelected = !game.awayTeamSelected;
-			}}
-		>
-			<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
-				{game.away_display_name}
-			</h4>
-			<div>
-				{#if game.status === 'FINAL'}
-					<p>{game.away_spread}</p>
-				{:else}
-					<p>{game.away_spread}</p>
-				{/if}
+		{#if game.status === 'FINAL'}
+			<div class="flex grow justify-between">
+				<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
+					{game.away_display_name}
+				</h4>
+				<p>{game.away_score}</p>
 			</div>
-		</button>
+		{:else}
+			<button
+				class="btn grow justify-between"
+				on:click={() => {
+					game.homeTeamSelected = false;
+					game.awayTeamSelected = !game.awayTeamSelected;
+				}}
+			>
+				<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
+					{game.away_display_name}
+				</h4>
+				<div>
+					{#if game.status === 'FINAL'}
+						<p>{game.away_spread}</p>
+					{:else}
+						<p>{game.away_spread}</p>
+					{/if}
+				</div>
+			</button>
+		{/if}
 	</div>
 	<hr class="!border-t-2" />
 	<div class="flex flex-row justify-end">
