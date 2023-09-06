@@ -70,7 +70,7 @@ export const actions = {
             data.away_short_name = awayTeam.short_name
 
             if (data.status === "FINAL") {
-                const outcome = determineOutcome(data.home_score, data.away_score, data.home_spread, data.away_spread)
+                const outcome = determineOutcome(data.home_score, data.away_score, data.home_spread)
                 data.pick_winner = outcome
             }
 
@@ -92,9 +92,9 @@ export const actions = {
     }
 }
 
-function determineOutcome(homeScore, awayScore, homeSpread, awaySpread) {
+function determineOutcome(homeScore, awayScore, homeSpread) {
     const homeMargin = homeScore - awayScore;
-    const spreadDifference = homeSpread - awaySpread;
+    const spreadDifference = Math.abs(homeSpread);
 
     if (homeMargin > spreadDifference) {
         return 'HOME';
