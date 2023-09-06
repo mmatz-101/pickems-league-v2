@@ -1,10 +1,15 @@
 import { writable } from 'svelte/store';
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+// Setting up current week
 export const currentWeek = writable(1);
-const records = await pb.collection("current").getFullList()
-currentWeek.set(records[0].current_week)
+
+export async function getCurrentWeek() {
+    const pb = new PocketBase('http://127.0.0.1:8090');
+    const records = await pb.collection("current").getFullList()
+    currentWeek.set(records[0].current_week)
+}
+getCurrentWeek()
 
 const { randomBytes } = await import("node:crypto")
 
