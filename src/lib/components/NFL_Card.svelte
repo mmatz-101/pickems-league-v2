@@ -19,76 +19,78 @@
 	$: game.selected = game.homeTeamSelected || game.awayTeamSelected;
 </script>
 
-<div class="card my-4 p-4 max-w-lg">
-	<div class="flex flex-row justify-between">
-		<p class="text-surface-600 dark:text-white">{formatDate(game.date)} ET</p>
-		<p class="text-surface-600 dark:text-white">{game.tv_station_name}</p>
-	</div>
-	<hr class="!border-t-2" />
-	<div class="flex grow justify-between">
-		<span class="h6">Select a Team</span>
-		{#if game.status === 'FINAL'}
-			<span class="h6">Score</span>
-		{:else}
-			<span class="h6">Spread</span>
-		{/if}
-	</div>
-	<div class="flex flex-row justify-between align-middle px-2 py-2">
-		{#if game.status === 'FINAL'}
-			<div class="btn grow justify-between">
-				<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
-					@{game.home_name}
-				</h4>
-				<div>
-					<p>{game.home_score}</p>
+<div class="flex justify-center">
+	<div class="card grow my-4 p-4 max-w-lg">
+		<div class="flex flex-row justify-between">
+			<p class="text-surface-600 dark:text-white">{formatDate(game.date)} ET</p>
+			<p class="text-surface-600 dark:text-white">{game.tv_station_name}</p>
+		</div>
+		<hr class="!border-t-2" />
+		<div class="flex grow justify-between">
+			<span class="h6">Select a Team</span>
+			{#if game.status === 'FINAL'}
+				<span class="h6">Score</span>
+			{:else}
+				<span class="h6">Spread</span>
+			{/if}
+		</div>
+		<div class="flex flex-row justify-between align-middle px-2 py-2">
+			{#if game.status === 'FINAL'}
+				<div class="btn grow justify-between">
+					<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
+						@{game.home_name}
+					</h4>
+					<div>
+						<p>{game.home_score}</p>
+					</div>
 				</div>
-			</div>
-		{:else}
-			<button
-				class="flex grow justify-between"
-				on:click={() => {
-					game.awayTeamSelected = false;
-					game.homeTeamSelected = !game.homeTeamSelected;
-				}}
-			>
-				<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
-					@{game.home_name}
-				</h4>
-				<div>
-					<p>{game.home_spread}</p>
+			{:else}
+				<button
+					class="flex grow justify-between"
+					on:click={() => {
+						game.awayTeamSelected = false;
+						game.homeTeamSelected = !game.homeTeamSelected;
+					}}
+				>
+					<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
+						@{game.home_name}
+					</h4>
+					<div>
+						<p>{game.home_spread}</p>
+					</div>
+				</button>
+			{/if}
+		</div>
+		<div class="flex flex-row justify-between align-middle px-2 py-2">
+			{#if game.status === 'FINAL'}
+				<div class="flex grow justify-between">
+					<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
+						{game.away_name}
+					</h4>
+					<p>{game.away_score}</p>
 				</div>
-			</button>
-		{/if}
-	</div>
-	<div class="flex flex-row justify-between align-middle px-2 py-2">
-		{#if game.status === 'FINAL'}
-			<div class="flex grow justify-between">
-				<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
-					{game.away_name}
-				</h4>
-				<p>{game.away_score}</p>
-			</div>
-		{:else}
-			<button
-				class="btn grow justify-between"
-				on:click={() => {
-					game.homeTeamSelected = false;
-					game.awayTeamSelected = !game.awayTeamSelected;
-				}}
-			>
-				<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
-					{game.away_name}
-				</h4>
-				<div>
-					<p>{game.away_spread}</p>
-				</div>
-			</button>
-		{/if}
-	</div>
-	<hr class="!border-t-2" />
-	<div class="flex flex-row justify-end">
-		<p class="pt-2 text-sm text-surface-600 dark:text-white">
-			updated: {formatDate(game.updated)} ET
-		</p>
+			{:else}
+				<button
+					class="btn grow justify-between"
+					on:click={() => {
+						game.homeTeamSelected = false;
+						game.awayTeamSelected = !game.awayTeamSelected;
+					}}
+				>
+					<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
+						{game.away_name}
+					</h4>
+					<div>
+						<p>{game.away_spread}</p>
+					</div>
+				</button>
+			{/if}
+		</div>
+		<hr class="!border-t-2" />
+		<div class="flex flex-row justify-end">
+			<p class="pt-2 text-sm text-surface-600 dark:text-white">
+				updated: {formatDate(game.updated)} ET
+			</p>
+		</div>
 	</div>
 </div>
