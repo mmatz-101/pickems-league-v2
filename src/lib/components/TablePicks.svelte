@@ -141,8 +141,6 @@
 												{pick.expand.gameID.away_name}
 											</td>
 										{/if}
-										<td>{formatDate(pick.expand.gameID.date)} ET</td>
-										<td>{pick.expand.gameID.league}</td>
 										{#if pick.expand.gameID.status === 'FINAL'}
 											<td>FINAL</td>
 											<td>{pick.expand.gameID.league}</td>
