@@ -5,7 +5,7 @@
 	const filteredData = filteredNFLData.concat(filteredNCAAData);
 </script>
 
-<h1 class="h1 m-10 font-bold">Pickspicks</h1>
+<h1 class="h1 m-10 font-bold">Picks</h1>
 
 <div class="flex max-w-4xl mx-auto my-10">
 	<!-- Responsive Container (recommended) -->
