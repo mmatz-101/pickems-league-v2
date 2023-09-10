@@ -6,7 +6,7 @@
 
 	let navigations = [];
 
-	for (let num = 1; num < $currentWeek + 1; num++) {
+	for (let num = 1; num < data.currentWeek + 1; num++) {
 		navigations = [
 			...navigations,
 			{
