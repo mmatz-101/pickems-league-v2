@@ -3,7 +3,12 @@
 
 	export let data;
 
-	let navigations = [];
+	let navigations = [
+		{
+			name: 'Results Page',
+			href: '/results'
+		}
+	];
 
 	for (let num = 1; num < data.currentWeek + 1; num++) {
 		navigations = [
@@ -22,7 +27,6 @@
 		}
 	];
 	$: navigations = navigations.reverse();
-	console.log(navigations);
 </script>
 
 <AppShell class="" slotSidebarLeft="bg-gradient-to-b from-gray-200/50 w-56 p-4" slotHeader="">
