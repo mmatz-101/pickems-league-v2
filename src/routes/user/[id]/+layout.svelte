@@ -1,6 +1,5 @@
 <script>
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-	import { currentWeek } from '$lib/utils';
 
 	export let data;
 
