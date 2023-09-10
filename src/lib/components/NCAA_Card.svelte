@@ -25,17 +25,18 @@
 			<p class="text-surface-600 dark:text-white">{game.tv_station_name}</p>
 		</div>
 		<hr class="!border-t-2" />
-		<div class="flex grow justify-between">
-			<span class="h6">Select a Team</span>
+		<div class="flex grow justify-between py-1">
 			{#if game.status === 'FINAL'}
+				<span class="h6 bg-warning-400 rounded-md">Final</span>
 				<span class="h6">Score</span>
 			{:else}
+				<span class="h6">Select a Team</span>
 				<span class="h6">Spread</span>
 			{/if}
 		</div>
 		<div class="flex flex-row justify-between align-middle px-2 py-2">
 			{#if game.status === 'FINAL'}
-				<div class="flex grow justify-between">
+				<div class="flex grow justify-between px-5 py-2">
 					<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
 						@{game.home_display_name}
 					</h4>
@@ -62,7 +63,7 @@
 		</div>
 		<div class="flex flex-row justify-between align-middle px-2 py-2">
 			{#if game.status === 'FINAL'}
-				<div class="flex grow justify-between">
+				<div class="flex grow justify-between px-5 py-2">
 					<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
 						{game.away_display_name}
 					</h4>
