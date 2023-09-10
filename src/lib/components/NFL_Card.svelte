@@ -20,7 +20,7 @@
 </script>
 
 <div class="flex justify-center">
-	<div class="card grow my-4 p-4 max-w-lg">
+	<div class="card grow my-3 p-4 max-w-lg">
 		<div class="flex flex-row justify-between">
 			<p class="text-surface-600 dark:text-white">{formatDate(game.date)} ET</p>
 			<p class="text-surface-600 dark:text-white">{game.tv_station_name}</p>
@@ -36,9 +36,9 @@
 		</div>
 		<div class="flex flex-row justify-between align-middle px-2 py-2">
 			{#if game.status === 'FINAL'}
-				<div class="btn grow justify-between">
+				<div class="flex grow justify-between">
 					<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
-						@{game.home_name}
+						@{game.home_display_name}
 					</h4>
 					<div>
 						<p>{game.home_score}</p>
@@ -46,14 +46,14 @@
 				</div>
 			{:else}
 				<button
-					class="flex grow justify-between"
+					class="btn grow justify-between"
 					on:click={() => {
 						game.awayTeamSelected = false;
 						game.homeTeamSelected = !game.homeTeamSelected;
 					}}
 				>
 					<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
-						@{game.home_name}
+						@{game.home_display_name}
 					</h4>
 					<div>
 						<p>{game.home_spread}</p>
@@ -65,7 +65,7 @@
 			{#if game.status === 'FINAL'}
 				<div class="flex grow justify-between">
 					<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
-						{game.away_name}
+						{game.away_display_name}
 					</h4>
 					<p>{game.away_score}</p>
 				</div>
@@ -78,10 +78,14 @@
 					}}
 				>
 					<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
-						{game.away_name}
+						{game.away_display_name}
 					</h4>
 					<div>
-						<p>{game.away_spread}</p>
+						{#if game.status === 'FINAL'}
+							<p>{game.away_spread}</p>
+						{:else}
+							<p>{game.away_spread}</p>
+						{/if}
 					</div>
 				</button>
 			{/if}
