@@ -2,7 +2,7 @@
 	import { currentWeek } from '$lib/utils';
 	export let data;
 	$: currentWeek.set(data.currentWeekDB);
-	$: console.log($currentWeek);
+	$: console.log('Setting current week: ', $currentWeek);
 
 	function setWeek() {
 		currentWeek.set(data.currentWeekDB);
