@@ -9,7 +9,8 @@ export async function load({ locals, params }) {
     });
 
     const picks = await locals.pb.collection("picks").getFullList({
-        filter: `week="${params.week}" && user="${locals.pb.authStore.model.id}"`
+        filter: `week="${params.week}" && user="${locals.pb.authStore.model.id}"`,
+        expand: "gameID"
     })
 
     let gamesNFLArray = structuredClone(gamesNFL)
