@@ -1,6 +1,15 @@
+import {sequence} from "@sveltejs/kit/hooks";
+import * as Sentry from "@sentry/sveltekit";
 import PocketBase from 'pocketbase'
 
-export async function handle({ event, resolve }) {
+Sentry.init({
+    dsn: "https://01537bb8639f840a3edbaaa4b9d8b6f9@o4505865232777216.ingest.sentry.io/4505865236578304",
+    tracesSampleRate: 1
+})
+
+export const handleError = Sentry.handleErrorWithSentry();
+
+export const handle = sequence(Sentry.sentryHandle(), async function _handle({ event, resolve }) {
     event.locals.pb = new PocketBase("https://pickems-league-db.fly.dev/");
 
     // load the store data from the request cookie string
@@ -21,4 +30,4 @@ export async function handle({ event, resolve }) {
     response.headers.append("set-cookie", event.locals.pb.authStore.exportToCookie({ secure: false }));
 
     return response
-}
+});
