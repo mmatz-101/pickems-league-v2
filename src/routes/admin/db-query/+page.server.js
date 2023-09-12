@@ -5,10 +5,13 @@ export const actions = {
 		try {
 			const games = await locals.pb.collection('games').getFullList();
 			let gamesArray = structuredClone(games);
-			console.log("Length of picks gamesArray", gamesArray.length)
+			console.log('Length of picks gamesArray', gamesArray.length);
 
-			await updatePicks(gamesArray);
-
+			for (const game of gamesArray) {
+				game.status = 'No Data';
+				console.log(game);
+				const record = await locals.pb.collection('games').update(game.id, game);
+			}
 
 			return {
 				success: true
@@ -19,11 +22,3 @@ export const actions = {
 		}
 	}
 };
-
-async function updatePicks(gamesArray) {
-	for (const game of gamesArray) {
-		game.status = 'No Data';
-		console.log(game)
-		const record = await locals.pb.collection('games').update(game.id, game);
-	}
-}
