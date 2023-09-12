@@ -6,7 +6,7 @@ export const actions = {
 			const picks = await locals.pb.collection('games').getFullList();
 			let picksArray = structuredClone(picks);
 
-			updatePicks(picksArray);
+			await updatePicks(picksArray);
 
 			return {
 				success: true
@@ -21,6 +21,7 @@ export const actions = {
 async function updatePicks(picksArray) {
 	for (const pick in picksArray) {
 		pick.status = 'No Data';
+		console.log(pick)
 		const record = await locals.pb.collection('games').update(pick.id, pick);
 	}
 }
