@@ -6,10 +6,7 @@ export const actions = {
 			const picks = await locals.pb.collection('games').getFullList();
 			let picksArray = structuredClone(picks);
 
-			picksArray.forEach((pick) => {
-				pick.status = 'No Data';
-                updatePick(pick)
-			});
+			updatePicks(picksArray);
 
 			return {
 				success: true
@@ -17,13 +14,13 @@ export const actions = {
 		} catch (err) {
 			console.log(err);
 			throw error(500, 'internal server error');
-            return {
-                success: false
-            }
 		}
 	}
 };
 
-async function updatePick(pick) {
-	const record = await locals.pb.collection('games').update(pick.id, pick);
+async function updatePicks(picksArray) {
+	for (const pick in picksArray) {
+		pick.status = 'No Data';
+		const record = await locals.pb.collection('games').update(pick.id, pick);
+	}
 }
