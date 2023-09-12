@@ -3,10 +3,13 @@ import { error } from '@sveltejs/kit';
 export const actions = {
 	removeFinal: async ({ locals }) => {
 		try {
-			const picks = await locals.pb.collection('games').getFullList();
-			let picksArray = structuredClone(picks);
+			const games = await locals.pb.collection('games').getFullList();
+			let gamesArray = structuredClone(games);
+			console.log("Length of picks gamesArray", gamesArray.length)
+			console.log(gamesArray)
 
-			await updatePicks(picksArray);
+			await updatePicks(gamesArray);
+
 
 			return {
 				success: true
@@ -18,10 +21,11 @@ export const actions = {
 	}
 };
 
-async function updatePicks(picksArray) {
-	for (const pick in picksArray) {
-		pick.status = 'No Data';
-		console.log(pick)
-		const record = await locals.pb.collection('games').update(pick.id, pick);
+async function updatePicks(gamesArray) {
+	for (const game in gamesArray) {
+		console.log(game)
+		game.status = 'No Data';
+		console.log(game)
+		const record = await locals.pb.collection('games').update(game.id, game);
 	}
 }
