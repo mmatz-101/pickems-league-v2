@@ -1,3 +1,6 @@
+<script>
+	export let data
+</script>
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-5">
 		<h2 class="h2">Remove Final</h2>
@@ -6,4 +9,9 @@
 			<button type="submit" class="btn variant-filled-primary w-full">Submit</button>
 		</form>
 	</div>
+	{#if data.success === true}
+	<div class="space-y-5">Success</div>
+	{:else}
+	<div class="space-y-5">Failure</div>
+	{/if}
 </div>
