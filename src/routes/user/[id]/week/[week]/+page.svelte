@@ -40,7 +40,7 @@
 	<div class="flex items-center">
 		{#if data.week == $currentWeek}
 			<a href={`./${data.week}/review`}>
-				{#if data.week === 1}
+				{#if data.week == 1}
 					{#if (sumNCAAPicks > 0 || sumNFLPicks > 0) & (sumNCAAPicks <= 8 && sumNFLPicks <= 4)}
 						<button class="btn variant-filled-success" type="submit">
 							Review Picks <Icon src={ArrowRightCircle} mini class="h-6" />
