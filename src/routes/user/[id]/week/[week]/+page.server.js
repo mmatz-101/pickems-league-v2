@@ -44,7 +44,7 @@ export async function load({ locals, params }) {
             if (pickSelected === "home") {
                 gamesNCAAArray[matchedNCAAGameIndex].homeTeamSelected = true;
             } else {
-                gamesNCAAArray[matchedNCAAGameIndex].homeTeamSelected = true;
+                gamesNCAAArray[matchedNCAAGameIndex].awayTeamSelected = true;
             }
         }
     }
