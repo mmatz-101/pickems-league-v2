@@ -38,7 +38,7 @@ async function updatePick(pick, locals) {
 			pick.results_points = 0.75;
 			pick.results_text = 'PUSH';
 		}
-		if (pick.team_selected.toUpperCase() === pick.expand.gameID.pick_winner) {
+		else if (pick.team_selected.toUpperCase() === pick.expand.gameID.pick_winner) {
 			pick.results_points = 1.5;
 			pick.results_text = 'WIN';
 		} else {
