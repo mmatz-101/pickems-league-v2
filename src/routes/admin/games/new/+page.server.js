@@ -94,7 +94,7 @@ export const actions = {
 
 function determineOutcome(homeScore, awayScore, homeSpread) {
     const homeMargin = homeScore - awayScore;
-    const spreadDifference = Math.abs(homeSpread);
+    const spreadDifference = -homeSpread;
 
     if (homeMargin > spreadDifference) {
         return 'HOME';
