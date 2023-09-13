@@ -1,10 +1,13 @@
 import { error } from '@sveltejs/kit';
-import { currentWeek } from '$lib/utils';
 
 export const actions = {
 	updatePicks: async ({ locals }) => {
 		try {
-            // Potentially in the future not ever pick has to be updated.
+			// get the current week
+    		const records = await locals.pb.collection("current").getFullList()
+        	const currentWeek =  records[0].current_week
+
+			// only filter picks that are in the currentWeek
 			const picks = await locals.pb.collection('picks').getFullList({
 				filter: `week=${currentWeek}`,
 				expand: 'gameID'
