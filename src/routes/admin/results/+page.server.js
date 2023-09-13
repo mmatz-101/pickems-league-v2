@@ -1,12 +1,16 @@
 import { error } from '@sveltejs/kit';
+import { currentWeek } from '$lib/utils';
 
 export const actions = {
 	updatePicks: async ({ locals }) => {
 		try {
+            // Potentially in the future not ever pick has to be updated.
 			const picks = await locals.pb.collection('picks').getFullList({
+				filter: `week=${currentWeek}`,
 				expand: 'gameID'
 			});
 			let picksArray = structuredClone(picks);
+			console.log(picksArray.length)
 
 			for (const pick of picksArray) {
 				await updatePick(pick, locals);
