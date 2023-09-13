@@ -11,10 +11,10 @@ export const actions = {
             let picksArray = structuredClone(picks)
             console.log(picksArray)
 
-            picksArray.forEach(pick => {
-                updatePick(pick, locals)
+            for (const pick of picksArray){
+                await updatePick(pick)
                 console.log(pick)
-            });
+            }
 
             return {
                 success: true
