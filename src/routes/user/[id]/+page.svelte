@@ -5,6 +5,7 @@
 	export let data;
 
 	$: picks = data.picks;
+	$: picksBinny = data.picksBinny;
 
 	// Find the maximum week number from the records
 	$: maxWeek = Math.max(...data.picks?.map((pick) => pick.week));
@@ -32,7 +33,7 @@
 	<!-- <TablePicks filteredData={picks} /> -->
 	<Accordion class="p-2 m-6 rounded-lg mx-auto max-w-5xl bg-slate-200">
 		{#each weekNumbers as week}
-			<TablePicks {picks} {week} />
+			<TablePicks {picks} {picksBinny} {week} />
 		{/each}
 	</Accordion>
 </div>

@@ -7,16 +7,16 @@
 	const team_selected = picks.find((pick) => pick.gameID === game.id)?.team_selected;
 
 	// if the away team isn't selected and it is a previous user pick set it.
-	if (team_selected == 'home' && !game.awayTeamSelected) {
-		game.homeTeamSelected = true;
+	if (team_selected == 'home' && !game.awayTeamSelectedBinny) {
+		game.homeTeamSelectedBinny = true;
 	}
 
 	// if the home team isn't selected and it is a previous user pick set it.
-	if (team_selected == 'away' && !game.homeTeamSelected) {
-		game.awayTeamSelected = true;
+	if (team_selected == 'away' && !game.homeTeamSelectedBinny) {
+		game.awayTeamSelectedBinny = true;
 	}
 
-	$: game.selected = game.homeTeamSelected || game.awayTeamSelected;
+	$: game.selectedBinny = game.homeTeamSelectedBinny || game.awayTeamSelectedBinny;
 </script>
 
 <div class="flex justify-center">
@@ -30,17 +30,17 @@
 			{#if game.status === 'FINAL'}
 				<span class="h6 bg-warning-400 rounded-md">Final</span>
 				<span class="h6">Score</span>
-			{:else if game.selectedBinny}
-				<span class="h6 flex grow justify-center bg-warning-500">Binny Buy</span>
+			{:else if game.selected}
+				<span class="h6 flex grow justify-center bg-warning-500">Already Selected</span>
 			{:else}
 				<span class="h6">Select a Team</span>
 				<span class="h6">Spread</span>
 			{/if}
 		</div>
 		<div class="flex flex-row justify-between align-middle px-2 py-2">
-			{#if (game.status === 'FINAL') | game.selectedBinny}
+			{#if (game.status === 'FINAL') | game.selected}
 				<div class="flex grow justify-between px-5 py-2">
-					<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
+					<h4 class="h4 font-medium {game.homeTeamSelectedBinny ? 'text-primary-700' : ''}">
 						@{game.home_display_name}
 					</h4>
 					<div>
@@ -51,11 +51,11 @@
 				<button
 					class="btn grow justify-between"
 					on:click={() => {
-						game.awayTeamSelected = false;
-						game.homeTeamSelected = !game.homeTeamSelected;
+						game.awayTeamSelectedBinny = false;
+						game.homeTeamSelectedBinny = !game.homeTeamSelectedBinny;
 					}}
 				>
-					<h4 class="h4 font-medium {game.homeTeamSelected ? 'text-primary-700' : ''}">
+					<h4 class="h4 font-medium {game.homeTeamSelectedBinny ? 'text-primary-700' : ''}">
 						@{game.home_display_name}
 					</h4>
 					<div>
@@ -65,9 +65,9 @@
 			{/if}
 		</div>
 		<div class="flex flex-row justify-between align-middle px-2 py-2">
-			{#if (game.status === 'FINAL') | game.selectedBinny}
+			{#if (game.status === 'FINAL') | game.selected}
 				<div class="flex grow justify-between px-5 py-2">
-					<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
+					<h4 class="h4 font-medium {game.awayTeamSelectedBinny ? 'text-primary-700' : ''}">
 						{game.away_display_name}
 					</h4>
 					<p>{game.away_score}</p>
@@ -76,11 +76,11 @@
 				<button
 					class="btn grow justify-between"
 					on:click={() => {
-						game.homeTeamSelected = false;
-						game.awayTeamSelected = !game.awayTeamSelected;
+						game.homeTeamSelectedBinny = false;
+						game.awayTeamSelectedBinny = !game.awayTeamSelectedBinny;
 					}}
 				>
-					<h4 class="h4 font-medium {game.awayTeamSelected ? 'text-primary-700' : ''}">
+					<h4 class="h4 font-medium {game.awayTeamSelectedBinny ? 'text-primary-700' : ''}">
 						{game.away_display_name}
 					</h4>
 					<div>

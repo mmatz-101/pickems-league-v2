@@ -1,6 +1,7 @@
 <script>
 	import NcaaCard from '$lib/components/NCAA_Card.svelte';
 	import NflCard from '$lib/components/NFL_Card.svelte';
+	import NflCardBinny from '$lib/components/NFL_Card_Binny.svelte';
 	import { currentWeek, userPicks } from '$lib/utils';
 	import { TabGroup, Tab, ProgressRadial } from '@skeletonlabs/skeleton';
 	// might need this to load the NCAA picks
@@ -13,6 +14,9 @@
 
 	$: sumNFLPicks = data.gamesNFL.filter((game) => game.selected).length;
 	$: sumNCAAPicks = data.gamesNCAA.filter((game) => game.selected).length;
+	$: sumNFLBinny = data.gamesNFL.filter((game) => game.selectedBinny).length;
+	$: sumNCAABinny = data.gamesNCAA.filter((game) => game.selectedBinny).length;
+	$: sumBinnyPicks = sumNFLBinny + sumNCAABinny;
 </script>
 
 <h1 class="h1 m-10 font-bold">Week {data.week}</h1>
@@ -62,6 +66,9 @@
 	<Tab bind:group={tabSet} name="tab2" value={1}>
 		<span class="font-semibold">NCAA</span>
 	</Tab>
+	<Tab bind:group={tabSet} name="tab3" value={2}>
+		<span class="font-semibold">Binny Buys</span>
+	</Tab>
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
@@ -75,6 +82,13 @@
 				{#each data.gamesNCAA as game (game.id)}
 					<NcaaCard bind:game picks={data.picks} />
 				{/each}
+			</div>
+		{:else if tabSet === 2}
+			<div class="container grid xl:grid-cols-2 grid-cols-1 mx-auto">
+				<h1 class="h1 font-semibold">Still Under Development</h1>
+				<!-- {#each data.gamesNFL as game (game.id)}
+					<NflCardBinny bind:game picks={data.picks} />
+				{/each} -->
 			</div>
 		{/if}
 	</svelte:fragment>

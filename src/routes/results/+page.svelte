@@ -30,7 +30,9 @@
 	};
 </script>
 
-<h1 class="h1">Results Page</h1>
-<div class="flex flex-grow mx-48 my-10">
-	<Table source={resultTable} class="table-comfortable" />
+<div class="m-10">
+	<h1 class="h1 font-bold m-4">Results Page</h1>
+	<div class="flex flex-grow mx-10 my-10">
+		<Table source={resultTable} class="table-comfortable" />
+	</div>
 </div>

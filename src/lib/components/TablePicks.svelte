@@ -2,6 +2,7 @@
 	import { formatDate, currentWeek } from '$lib/utils';
 	import { AccordionItem } from '@skeletonlabs/skeleton';
 	export let picks;
+	export let picksBinny;
 	export let week;
 
 	console.log('The current week in the /lib/TablePicks: ', $currentWeek);
@@ -83,6 +84,58 @@
 								{/if}
 							{/each}
 						</tbody>
+						<tbody>
+							<tr>
+								<td colspan="8" class="font-semibold">Binny Buys</td>
+							</tr>
+						</tbody>
+						<tbody>
+							{#each picksBinny as pick}
+								{#if pick.week === week}
+									<tr>
+										<td>
+											{pick.team_selected.toUpperCase()}
+										</td>
+										{#if pick.team_selected == 'home'}
+											<td>
+												{pick.expand.gameID.home_spread}
+											</td>
+											<td class="text-primary-800 font-medium">
+												{pick.expand.gameID.home_name}
+											</td>
+											<td>
+												{pick.expand.gameID.away_name}
+											</td>
+										{:else}
+											<td>
+												{pick.expand.gameID.away_spread}
+											</td>
+											<td>
+												{pick.expand.gameID.home_name}
+											</td>
+											<td class="text-primary-800 font-medium">
+												{pick.expand.gameID.away_name}
+											</td>
+										{/if}
+										{#if pick.expand.gameID.status === 'FINAL'}
+											<td>FINAL</td>
+											<td>{pick.expand.gameID.league}</td>
+											<td>
+												{pick.results_text}
+											</td>
+											<td>
+												{pick.expand.gameID.home_score} - {pick.expand.gameID.away_score}
+											</td>
+										{:else}
+											<td>{formatDate(pick.expand.gameID.date)} ET</td>
+											<td>{pick.expand.gameID.league}</td>
+											<td />
+											<td />
+										{/if}
+									</tr>
+								{/if}
+							{/each}
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -96,7 +149,7 @@
 			</div></svelte:fragment
 		>
 		<svelte:fragment slot="content">
-			<div class="flex max-w-4xl mx-auto">
+			<div class="flex max-w-5xl mx-auto">
 				<!-- Responsive Container (recommended) -->
 				<div class="table-container">
 					<!-- Native Table Element -->
@@ -115,6 +168,58 @@
 						</thead>
 						<tbody>
 							{#each picks as pick}
+								{#if pick.week === week}
+									<tr>
+										<td>
+											{pick.team_selected.toUpperCase()}
+										</td>
+										{#if pick.team_selected == 'home'}
+											<td>
+												{pick.expand.gameID.home_spread}
+											</td>
+											<td class="text-primary-800 font-medium">
+												{pick.expand.gameID.home_name}
+											</td>
+											<td>
+												{pick.expand.gameID.away_name}
+											</td>
+										{:else}
+											<td>
+												{pick.expand.gameID.away_spread}
+											</td>
+											<td>
+												{pick.expand.gameID.home_name}
+											</td>
+											<td class="text-primary-800 font-medium">
+												{pick.expand.gameID.away_name}
+											</td>
+										{/if}
+										{#if pick.expand.gameID.status === 'FINAL'}
+											<td>FINAL</td>
+											<td>{pick.expand.gameID.league}</td>
+											<td>
+												{pick.results_text}
+											</td>
+											<td>
+												{pick.expand.gameID.home_score} - {pick.expand.gameID.away_score}
+											</td>
+										{:else}
+											<td>{formatDate(pick.expand.gameID.date)} ET</td>
+											<td>{pick.expand.gameID.league}</td>
+											<td />
+											<td />
+										{/if}
+									</tr>
+								{/if}
+							{/each}
+						</tbody>
+						<tbody>
+							<tr>
+								<td colspan="8" class="font-semibold">Binny Buys</td>
+							</tr>
+						</tbody>
+						<tbody>
+							{#each picksBinny as pick}
 								{#if pick.week === week}
 									<tr>
 										<td>

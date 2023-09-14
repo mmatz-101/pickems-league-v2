@@ -5,28 +5,10 @@
 
 	let navigations = [
 		{
-			name: 'Results Page',
-			href: '/results'
-		}
-	];
-
-	for (let num = 1; num < data.currentWeek + 1; num++) {
-		navigations = [
-			...navigations,
-			{
-				name: `Week ${num}`,
-				href: `/user/${data.id}/week/${num}`
-			}
-		];
-	}
-	navigations = [
-		...navigations,
-		{
 			name: 'User Homepage',
-			href: `/user/${data.id}`
+			href: `/user/${data.userID}`
 		}
 	];
-	$: navigations = navigations.reverse();
 </script>
 
 <AppShell class="" slotSidebarLeft="bg-gradient-to-b from-gray-200/50 w-56 p-4" slotHeader="">

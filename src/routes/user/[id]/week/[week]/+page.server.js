@@ -8,14 +8,20 @@ export async function load({ locals, params }) {
         filter: `week="${params.week}" && league="NCAAF"`
     });
 
+    const binnyPicks = await locals.pb.collection("binny_picks").getFullList({
+        filter: `week="${params.week}" && user="${locals.pb.authStore.model.id}"`,
+        expand: "gameID"
+    })
+
     const picks = await locals.pb.collection("picks").getFullList({
         filter: `week="${params.week}" && user="${locals.pb.authStore.model.id}"`,
         expand: "gameID"
     })
 
-    let gamesNFLArray = structuredClone(gamesNFL)
-    let gamesNCAAArray = structuredClone(gamesNCAA)
-    let picksArray = structuredClone(picks)
+    const gamesNFLArray = structuredClone(gamesNFL)
+    const gamesNCAAArray = structuredClone(gamesNCAA)
+    const picksArray = structuredClone(picks)
+    const binnyPicksArray = structuredClone(binnyPicks)
 
     // Determined the selected games before rendering the components.
     for (const pick of picksArray) {
@@ -54,7 +60,8 @@ export async function load({ locals, params }) {
         success: true,
         gamesNFL: gamesNFLArray,
         gamesNCAA: gamesNCAAArray,
-        picks: picksArray
+        picks: picksArray,
+        binnyPicks: binnyPicksArray
     }
 }
 
